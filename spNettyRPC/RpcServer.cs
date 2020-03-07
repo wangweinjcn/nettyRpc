@@ -345,7 +345,7 @@ namespace NettyRPC
                         pipeline.AddLast(new FastPacketEncoder(), SERVER_HANDLER);
                     }));
 
-                rpcServerChannel =  bootstrap.BindAsync(port).GetAwaiter().GetResult();
+                rpcServerChannel = AsyncHelpers.RunSync<IChannel>(()=> bootstrap.BindAsync(port));
 
                                
             }

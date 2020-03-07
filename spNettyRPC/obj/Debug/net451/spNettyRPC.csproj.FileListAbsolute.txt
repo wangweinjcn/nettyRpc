@@ -117,7 +117,6 @@ D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\D
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net451\System.Runtime.CompilerServices.Unsafe.dll
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net451\System.Runtime.InteropServices.RuntimeInformation.dll
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net451\System.Threading.Tasks.Extensions.dll
-D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.csprojAssemblyReference.cache
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.csproj.CoreCompileInputs.cache
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.AssemblyInfoInputs.cache
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.AssemblyInfo.cs

@@ -82,7 +82,7 @@ namespace NettyRPC.Tasks
         /// <returns></returns>
         public TResult GetResult()
         {
-            return this.GetTask().GetAwaiter().GetResult();
+            return AsyncHelpers.RunSync<TResult>(()=> this.GetTask());
         }
 
         /// <summary>

@@ -1,0 +1,8 @@
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Release\netcoreapp2.0\spNettyRPC.csproj.CoreCompileInputs.cache
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Release\netcoreapp2.0\spNettyRPC.AssemblyInfoInputs.cache
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Release\netcoreapp2.0\spNettyRPC.AssemblyInfo.cs
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Release\netcoreapp2.0\spNettyRPC.deps.json
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Release\netcoreapp2.0\spNettyRPC.dll
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Release\netcoreapp2.0\spNettyRPC.pdb
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Release\netcoreapp2.0\spNettyRPC.dll
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Release\netcoreapp2.0\spNettyRPC.pdb

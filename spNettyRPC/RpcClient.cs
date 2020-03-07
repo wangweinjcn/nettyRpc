@@ -313,7 +313,7 @@ namespace NettyRPC
                         pipeline.AddLast(new FastPacketEncoder(), new RpcClientHandler(this));
                     }));
 
-                this.clientChannel =  bootstrap.ConnectAsync(new IPEndPoint(host, port)).GetAwaiter().GetResult();
+                this.clientChannel = AsyncHelpers.RunSync<IChannel>(()=> bootstrap.ConnectAsync(new IPEndPoint(host, port)));
 
                 Console.WriteLine("now connect");
 
