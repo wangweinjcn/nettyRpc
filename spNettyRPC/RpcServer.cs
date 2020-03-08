@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using DotNetty.Codecs;
 using DotNetty.Handlers.Logging;
+using DotNetty.Handlers.Timeout;
 using DotNetty.Handlers.Tls;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
@@ -132,9 +133,10 @@ namespace NettyRPC
             FastSession fs = null;
             if (!allchannels.ContainsKey(channel.Id.AsLongText()))
             {
-                if (allchannels.TryRemove(channel.Id.AsLongText(), out fs))
+                fs = new FastSession(channel, this);
+                if (allchannels.TryAdd(channel.Id.AsLongText(),  fs))
                 {
-                    fs.Close();
+                    
                 }
             }
         }
@@ -144,11 +146,13 @@ namespace NettyRPC
         /// <param name="channel"></param>
         internal void onDisconnect(IChannel channel)
         {
+            Console.WriteLine("channel disconnect");
             FastSession fs = null;
             if (allchannels.ContainsKey(channel.Id.AsLongText()))
             {
-                fs = new FastSession(channel, this);
-                allchannels.TryAdd(channel.Id.AsLongText(), fs);
+              // 
+                allchannels.TryRemove(channel.Id.AsLongText(), out fs);
+                fs.Close();
             }
         }
         internal async void ProcessPacketAsync(IChannel channel, FastPacket packet)
@@ -301,12 +305,17 @@ namespace NettyRPC
         /// <param name="disposing">是否也释放托管资源</param>
         protected virtual void Dispose(bool disposing)
         {
-             rpcServerChannel.CloseAsync();
+
+            foreach (var obj in allchannels.Values)
+            {
+                if(obj!=null)
+                obj.Close();
+            }
+
+            allchannels.Clear();
+            rpcServerChannel.CloseAsync();
             bossGroup.ShutdownGracefullyAsync();
             workerGroup.ShutdownGracefullyAsync();
-            foreach (var obj in allchannels.Values)
-                obj.Close();
-            allchannels.Clear();
         }
         #endregion
         MultithreadEventLoopGroup bossGroup;
@@ -340,9 +349,10 @@ namespace NettyRPC
                         {
                             pipeline.AddLast(TlsHandler.Server(tlsCertificate));
                         }
-
+                         pipeline.AddLast(new IdleStateHandler(commSetting.IdleStateTime, 0, 0));
                         pipeline.AddLast(new FastPacketDecode(commSetting.MAX_FRAME_LENGTH, commSetting.LENGTH_FIELD_OFFSET, commSetting.LENGTH_FIELD_LENGTH, commSetting.LENGTH_ADJUSTMENT, commSetting.INITIAL_BYTES_TO_STRIP, false));
                         pipeline.AddLast(new FastPacketEncoder(), SERVER_HANDLER);
+                       
                     }));
 
                 rpcServerChannel = AsyncHelpers.RunSync<IChannel>(()=> bootstrap.BindAsync(port));

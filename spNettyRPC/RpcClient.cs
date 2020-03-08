@@ -9,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using DotNetty.Codecs;
+using DotNetty.Handlers.Timeout;
 using DotNetty.Handlers.Tls;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
@@ -27,6 +28,7 @@ namespace NettyRPC
     /// </summary>
     public class FastClient 
     {
+        public bool connected;
         private IPAddress host;
         private int port;
         private bool useSSl;
@@ -88,6 +90,7 @@ namespace NettyRPC
         public async Task connect()
         {
           await  this.startClientAsync();
+            connected = true;
         }
         public async Task DisposeAsync()
         {
@@ -98,6 +101,7 @@ namespace NettyRPC
         private bool Send(FastPacket pack)
         {
             this.clientChannel.WriteAndFlushAsync(pack);
+            this.connected = true;
             return true;
         }
         
@@ -205,6 +209,7 @@ namespace NettyRPC
             }
             catch (Exception)
             {
+                connected = false;
                 return false;
             }
         }
@@ -217,6 +222,7 @@ namespace NettyRPC
         /// <param name="exception">异常对象</param> 
         protected virtual void OnException(FastPacket packet, Exception exception)
         {
+            connected = false;
         }
 
         /// <summary>
@@ -308,13 +314,14 @@ namespace NettyRPC
                         {
                             pipeline.AddLast(new TlsHandler(stream => new SslStream(stream, true, (sender, certificate, chain, errors) => true), new ClientTlsSettings(targetHost)));
                         }
-
+                         pipeline.AddLast(new IdleStateHandler(0,commSetting.IdleStateTime,0));
                         pipeline.AddLast(new FastPacketDecode(commSetting.MAX_FRAME_LENGTH, commSetting.LENGTH_FIELD_OFFSET, commSetting.LENGTH_FIELD_LENGTH, commSetting.LENGTH_ADJUSTMENT, commSetting.INITIAL_BYTES_TO_STRIP, false));
                         pipeline.AddLast(new FastPacketEncoder(), new RpcClientHandler(this));
+                       
                     }));
 
                 this.clientChannel = AsyncHelpers.RunSync<IChannel>(()=> bootstrap.ConnectAsync(new IPEndPoint(host, port)));
-
+                connected = true;
                 Console.WriteLine("now connect");
 
             }

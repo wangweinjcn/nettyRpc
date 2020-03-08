@@ -187,11 +187,7 @@ namespace NettyRPC.Fast
             };
             return true;
         }
-        public FastPacket(IByteBuffer bytebuffer)
-        {
-           
 
-        }
        
         public IByteBuffer ToByteBuffer()
         {

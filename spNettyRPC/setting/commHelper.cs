@@ -15,8 +15,10 @@ namespace NettyRPC
         public static  int LENGTH_FIELD_OFFSET = 1;
         public static  int LENGTH_ADJUSTMENT = 0;
         public static  int INITIAL_BYTES_TO_STRIP = 0;
-
-
+        /// <summary>
+        /// 心跳检测机制，单位秒
+        /// </summary>
+        public static int IdleStateTime = 15;
         public static int maxPackageSize = 8196;
         public static IByteBuffer[] httpDelimiter()
         {

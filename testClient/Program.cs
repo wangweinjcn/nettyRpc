@@ -14,11 +14,16 @@ namespace testClient
         {
             FastClient rc = new FastClient();
             rc.connect().GetAwaiter();
-          var res1=  rc.InvokeApi<string>("GetVersion").GetAwaiter().GetResult();
+            var res1=  rc.InvokeApi<string>("GetVersion").GetAwaiter().GetResult();
+      
             Console.WriteLine("resutl1:{0}", res1);
-            res1= rc.InvokeApi<string>("Echo","test1"," world").GetAwaiter().GetResult();
-            Console.WriteLine("resutl2:{0}", res1);
-            Console.ReadLine();
+            var str= Console.ReadLine();
+            while (str != "ccc")
+            {
+                res1 = rc.InvokeApi<string>("Echo", str, " world").GetAwaiter().GetResult();
+                Console.WriteLine("resutl2:{0}", res1);
+                str= Console.ReadLine();
+            }
 
         }
     }

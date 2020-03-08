@@ -6,6 +6,7 @@ namespace NettyRPC
     using System;
     using System.Collections.Concurrent;
     using System.Threading.Tasks;
+    using DotNetty.Handlers.Timeout;
     using DotNetty.Transport.Channels;
     using NettyRPC.Exceptions;
     using NettyRPC.Fast;
@@ -33,6 +34,18 @@ namespace NettyRPC
             finally
             { }
             
+        }
+        public override void UserEventTriggered(IChannelHandlerContext context, object evt)
+        {
+            Console.WriteLine("客户端循环心跳监测发送: " + DateTime.Now);
+            if (evt is IdleStateEvent eventState)
+            {
+                if (eventState.State == IdleState.WriterIdle)
+                {
+                    FastPacket fp = new FastPacket("$$$", -1, true);
+                    context.WriteAndFlushAsync(fp);
+                }
+            }
         }
 
         public override void ExceptionCaught(IChannelHandlerContext contex, Exception e)
