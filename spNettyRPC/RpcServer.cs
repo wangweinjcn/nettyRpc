@@ -76,7 +76,10 @@ namespace NettyRPC
         /// 获取或设置Api行为特性过滤器提供者
         /// </summary>
         public IFilterAttributeProvider FilterAttributeProvider { get; set; }
-        private ConcurrentDictionary<string, FastSession> allchannels = new ConcurrentDictionary<string, FastSession>();
+        /// <summary>
+        /// 客户端连接session字典
+        /// </summary>
+        private ConcurrentDictionary<string, FastSession> allSessions { get; set; }
 
         public RpcServer() : this(ServerSettings.backLength, ServerSettings.Port, false, "")
         {
@@ -98,7 +101,7 @@ namespace NettyRPC
             this.GlobalFilters = new FastGlobalFilters();
             this.DependencyResolver = new DefaultDependencyResolver();
             this.FilterAttributeProvider = new DefaultFilterAttributeProvider();
-
+            allSessions = new ConcurrentDictionary<string, FastSession>();
             DomainAssembly.GetAssemblies().ForEach(item => this.BindService(item));
 
         }
@@ -131,10 +134,10 @@ namespace NettyRPC
         internal void onConnect(IChannel channel)
         {
             FastSession fs = null;
-            if (!allchannels.ContainsKey(channel.Id.AsLongText()))
+            if (!allSessions.ContainsKey(channel.Id.AsLongText()))
             {
                 fs = new FastSession(channel, this);
-                if (allchannels.TryAdd(channel.Id.AsLongText(),  fs))
+                if (allSessions.TryAdd(channel.Id.AsLongText(),  fs))
                 {
                     
                 }
@@ -148,24 +151,24 @@ namespace NettyRPC
         {
             Console.WriteLine("channel disconnect");
             FastSession fs = null;
-            if (allchannels.ContainsKey(channel.Id.AsLongText()))
+            if (allSessions.ContainsKey(channel.Id.AsLongText()))
             {
               // 
-                allchannels.TryRemove(channel.Id.AsLongText(), out fs);
+                allSessions.TryRemove(channel.Id.AsLongText(), out fs);
                 fs.Close();
             }
         }
         internal async void ProcessPacketAsync(IChannel channel, FastPacket packet)
         {
             FastSession fs = null;
-            if (allchannels.ContainsKey(channel.Id.AsLongText()))
+            if (allSessions.ContainsKey(channel.Id.AsLongText()))
             {
-                fs = allchannels[channel.Id.AsLongText()];
+                fs = allSessions[channel.Id.AsLongText()];
             }
             else
             {
                 fs = new FastSession(channel, this);
-                allchannels.TryAdd(channel.Id.AsLongText(), fs);
+                allSessions.TryAdd(channel.Id.AsLongText(), fs);
             }
             var requestContext = new RequestContext(fs, packet);
             this.OnRecvFastPacketAsync(requestContext);
@@ -204,7 +207,18 @@ namespace NettyRPC
                 await this.TryExecuteRequestAsync(requestContext);
             }
         }
-
+        /// <summary>
+        /// 获取指定Id的session
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        protected FastSession GetSession(string id)
+        {
+            if (allSessions.ContainsKey(id))
+                return allSessions[id];
+            else
+                return null;
+        }
         /// <summary>
         /// 执行请求
         /// </summary>
@@ -306,13 +320,13 @@ namespace NettyRPC
         protected virtual void Dispose(bool disposing)
         {
 
-            foreach (var obj in allchannels.Values)
+            foreach (var obj in allSessions.Values)
             {
                 if(obj!=null)
                 obj.Close();
             }
 
-            allchannels.Clear();
+            allSessions.Clear();
             rpcServerChannel.CloseAsync();
             bossGroup.ShutdownGracefullyAsync();
             workerGroup.ShutdownGracefullyAsync();

@@ -69,7 +69,7 @@ namespace NettyRPC
         /// <summary>
         /// 
         /// </summary>
-        protected IChannel clientChannel { get; set; }
+        protected IChannel clientSession { get; set; }
         /// <summary>
         /// Fast协议的tcp客户端
         /// </summary>
@@ -94,13 +94,13 @@ namespace NettyRPC
         }
         public async Task DisposeAsync()
         {
-            await clientChannel.CloseAsync();
+            await clientSession.CloseAsync();
 
         }
 
         private bool Send(FastPacket pack)
         {
-            this.clientChannel.WriteAndFlushAsync(pack);
+            this.clientSession.WriteAndFlushAsync(pack);
             this.connected = true;
             return true;
         }
@@ -156,7 +156,7 @@ namespace NettyRPC
             catch (Exception ex)
             {
                 var exceptionContext = new ExceptionContext(requestContext, ex);
-                Common.SendRemoteException(this.clientChannel, exceptionContext);
+                Common.SendRemoteException(this.clientSession, exceptionContext);
                 this.OnException(requestContext.Packet, ex);
             }
         }
@@ -189,7 +189,7 @@ namespace NettyRPC
             var parameters = Common.GetAndUpdateParameterValues(this.Serializer, actionContext);
             var result = await action.ExecuteAsync(this, parameters);
 
-            if (action.IsVoidReturn == false && this.clientChannel.Active == true)
+            if (action.IsVoidReturn == false && this.clientSession.Active == true)
             {
                 actionContext.Packet.Body = this.Serializer.Serialize(result);
                 this.TrySendPackage(actionContext.Packet);
@@ -254,7 +254,7 @@ namespace NettyRPC
             var id = this.packetIdProvider.NewId();
             var packet = new FastPacket(api, id, true);
             packet.SetBodyParameters(this.Serializer, parameters);
-            return Common.InvokeApi<T>(this.clientChannel, this.taskSetterTable, this.Serializer, packet, this.TimeOut);
+            return Common.InvokeApi<T>(this.clientSession, this.taskSetterTable, this.Serializer, packet, this.TimeOut);
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace NettyRPC
             this.taskSetterTable = null;
             this.packetIdProvider = null;
             this.Serializer = null;
-            this.clientChannel.CloseSafe();
+            this.clientSession.CloseSafe();
         }
         async Task startClientAsync()
         {
@@ -320,7 +320,7 @@ namespace NettyRPC
                        
                     }));
 
-                this.clientChannel = AsyncHelpers.RunSync<IChannel>(()=> bootstrap.ConnectAsync(new IPEndPoint(host, port)));
+                this.clientSession = AsyncHelpers.RunSync<IChannel>(()=> bootstrap.ConnectAsync(new IPEndPoint(host, port)));
                 connected = true;
                 Console.WriteLine("now connect");
 
