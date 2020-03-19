@@ -123,4 +123,3 @@ D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\D
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.csproj.CopyComplete
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.dll
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.pdb
-D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.csprojAssemblyReference.cache
