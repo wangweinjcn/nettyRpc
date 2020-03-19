@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,10 +13,14 @@ namespace testClient
     {
         static  void Main(string[] args)
         {
+
+            //Task.Run(() => testthreadMain());
+            //Console.ReadLine();
+            //return;
             FastClient rc = new tClient();
             rc.connect().GetAwaiter();
             var res1=  rc.InvokeApi<string>("GetVersion").GetAwaiter().GetResult();
-      
+            
             Console.WriteLine("resutl1:{0}", res1);
             var str= Console.ReadLine();
             while (str != "ccc")
@@ -25,6 +30,33 @@ namespace testClient
                 str= Console.ReadLine();
             }
 
+        }
+        static void testThread()
+        {
+            var cp = System.Threading.Thread.CurrentPrincipal;
+            var ident = cp.Identity as ClaimsIdentity;
+            if (ident != null)
+                foreach (var obj in ident.Claims)
+                {
+                    Console.Write("thread id:" + System.Threading.Thread.CurrentThread.ManagedThreadId +" ");
+                    Console.WriteLine(obj.Subject + ":" + obj.Value);
+                }
+
+            System.Threading.Thread.Sleep(2000);
+        }
+        static void testthreadMain()
+        {
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim("UserId", "admin"));
+            ClaimsIdentity ci = new ClaimsIdentity(claims);
+            var userPrincipal = new ClaimsPrincipal(ci);
+            System.Threading.Thread.CurrentPrincipal = userPrincipal;
+            for (int i = 0; i < 5; i++)
+            {
+                Task.Run(() => testThread());
+
+                System.Threading.Thread.Sleep(1000);
+            }
         }
     }
 }

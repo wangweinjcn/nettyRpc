@@ -40,7 +40,18 @@ namespace NettyRPC.Fast
             this.rpcServer = middleware;
             return this;
         }
-
+        /// <summary>
+        /// 执行前
+        /// </summary>
+        /// <param name="actionContext"></param>
+        protected virtual void OnActionExecuting(ActionContext actionContext)
+        { }
+        /// <summary>
+        /// 执行后
+        /// </summary>
+        /// <param name="actionContext"></param>
+        protected virtual void OnActionExecuted(ActionContext actionContext)
+        { }
         /// <summary>
         /// 执行Api行为
         /// </summary>   
@@ -105,8 +116,9 @@ namespace NettyRPC.Fast
         private async Task ExecutingActionAsync(ActionContext actionContext, IEnumerable<IFilter> filters)
         {
             var paramters = actionContext.Action.Parameters.Select(p => p.Value).ToArray();
+            OnActionExecuting(actionContext);
             var result = await actionContext.Action.ExecuteAsync(this, paramters);
-
+            OnActionExecuted(actionContext);
             this.ExecFiltersAfterAction(filters, actionContext);
             if (actionContext.Result != null)
             {
