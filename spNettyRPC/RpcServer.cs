@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -207,12 +208,17 @@ namespace NettyRPC
                 await this.TryExecuteRequestAsync(requestContext);
             }
         }
+
+        public List<FastSession> getAllSessions()
+        {
+            return allSessions.Values.ToList();
+        }
         /// <summary>
         /// 获取指定Id的session
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        protected FastSession GetSession(string id)
+        public FastSession GetSession(string id)
         {
             if (allSessions.ContainsKey(id))
                 return allSessions[id];

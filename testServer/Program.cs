@@ -13,8 +13,19 @@ namespace testServer
         {
             RpcServer rs = new RpcServer();
             rs.start();
-            Console.ReadLine();
-
+            var str = Console.ReadLine();
+            while (str != "ccc")
+            {
+                 str=   Console.ReadLine();
+                var fs = rs.getAllSessions().FirstOrDefault();
+                if (fs == null)
+                {
+                    Console.WriteLine("fs is null");
+                    continue;
+                }
+               var xx= fs.InvokeApi<string>("GetVersion").GetAwaiter().GetResult();
+                Console.WriteLine(xx);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ namespace testServer
 {
     public class serverCommand : FastApiService
     {
+        private bool testclient = false;
         /// <summary>
         /// 获取服务组件版本号
         /// </summary>       
@@ -25,8 +26,15 @@ namespace testServer
 
         public string Echo(string param1,string param2)
         {
+
             
             return param2 + param1;
+        }
+        [Api]
+        public string getClientVersion()
+        {
+          return  this.CurrentContext.Session.InvokeApi<string>("GetVersion").GetAwaiter().GetResult();
+            
         }
     }
 }

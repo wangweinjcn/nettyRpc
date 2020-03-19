@@ -12,7 +12,7 @@ namespace testClient
     {
         static  void Main(string[] args)
         {
-            FastClient rc = new FastClient();
+            FastClient rc = new tClient();
             rc.connect().GetAwaiter();
             var res1=  rc.InvokeApi<string>("GetVersion").GetAwaiter().GetResult();
       

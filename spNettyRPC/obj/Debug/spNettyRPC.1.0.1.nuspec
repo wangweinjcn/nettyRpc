@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>spNettyRPC</id>
+    <version>1.0.1</version>
+    <authors>spNettyRPC</authors>
+    <owners>spNettyRPC</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>dotnet core rpc framwork base dotnetty</description>
+    <releaseNotes>1.0.1 增加获取所有的session函数和查找session函数</releaseNotes>
+    <copyright>wangwei</copyright>
+    <repository url="https://github.com/wangweinjcn/nettyRpc.git" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.1">
+        <dependency id="DotNetty.Buffers" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Codecs" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Common" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Handlers" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport.Libuv" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.FileExtensions" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Console" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp2.0">
+        <dependency id="DotNetty.Buffers" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Codecs" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Common" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Handlers" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport.Libuv" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.FileExtensions" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Console" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.Web.Extensions" targetFramework=".NETFramework4.5.1" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net451\spNettyRPC.dll" target="lib\net451\spNettyRPC.dll" />
+    <file src="D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\netcoreapp2.0\spNettyRPC.dll" target="lib\netcoreapp2.0\spNettyRPC.dll" />
+  </files>
+</package>
