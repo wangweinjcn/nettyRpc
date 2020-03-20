@@ -6,11 +6,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>dotnet core rpc framwork base dotnetty</Description>
     <Copyright>wangwei</Copyright>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
     <PackageReleaseNotes>1.0.1 增加获取所有的session函数和查找session函数
-1.0.2 增加OnActionExecuting和OnActionExecuted 触发器函数</PackageReleaseNotes>
-    <Version>1.0.2</Version>
+1.0.2 增加OnActionExecuting和OnActionExecuted 触发器函数
+1.0.3 添加messagePack的打包模式，增加rpcServer和rpcCLient的构造函数</PackageReleaseNotes>
+    <Version>1.0.3</Version>
     <RepositoryUrl>https://github.com/wangweinjcn/nettyRpc.git</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
@@ -35,6 +36,7 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetty.Transport.Libuv" Version="0.6.0" />
+    <PackageReference Include="MessagePack" Version="1.9.11" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
@@ -48,7 +50,9 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
-  
+    <PackageReference Include="MessagePack">
+      <Version>2.1.90</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

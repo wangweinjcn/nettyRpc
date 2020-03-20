@@ -26,7 +26,7 @@ namespace NettyRPC
     /// <summary>
     /// 表示Fast协议的tcp客户端
     /// </summary>
-    public class FastClient 
+    public class RpcClient 
     {
         public bool connected;
         private IPAddress host;
@@ -54,7 +54,7 @@ namespace NettyRPC
         /// 获取或设置序列化工具
         /// 默认是Json序列化
         /// </summary>
-        public ISerializer Serializer { get; set; }
+        public ISerializer Serializer { get; private set; }
 
         /// <summary>
         /// 获取或设置请求等待超时时间(毫秒) 
@@ -73,19 +73,34 @@ namespace NettyRPC
         /// <summary>
         /// Fast协议的tcp客户端
         /// </summary>
-        public FastClient():this(ClientSettings.Host, ClientSettings.Port,false,"")
+        public RpcClient():this(ClientSettings.Host, ClientSettings.Port,false,"")
         {
           }
-
-        public FastClient(IPAddress _host,int _port,bool _usessl,string _sslfile,string _sslpassword="")
+        public RpcClient(ISerializer _serializer) : this(ClientSettings.Host, ClientSettings.Port, false, "","",_serializer)
+        {
+        }
+        public RpcClient(string host, int port, ISerializer _serializer) : this(IPAddress.Parse(host), port, false, "", "", _serializer)
+        {
+        }
+        public RpcClient(IPAddress host,int port,ISerializer _serializer) : this(host, port, false, "","",_serializer)
+        {
+        }
+        public RpcClient(IPAddress _host,int _port,bool _usessl,string _sslfile,string _sslpassword="",ISerializer _serializer=null)
         {
             host = _host;
             port =_port;
             useSSl = _usessl;
             sslFile = _sslfile;
             sslPassword = _sslpassword;
-            this.Init();
-           
+            this.apiActionTable = new ApiActionTable(Common.GetServiceApiActions(this.GetType()));
+            this.packetIdProvider = new PacketIdProvider();
+            this.taskSetterTable = new TaskSetterTable<long>();
+            if (_serializer == null)
+                this.Serializer = new DefaultSerializer();
+            else
+                this.Serializer = _serializer;
+            this.TimeOut = TimeSpan.FromSeconds(30);
+
         }
         public async Task connect()
         {
@@ -106,17 +121,7 @@ namespace NettyRPC
         }
         
 
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        private void Init()
-        {
-            this.apiActionTable = new ApiActionTable(Common.GetServiceApiActions(this.GetType()));
-            this.packetIdProvider = new PacketIdProvider();
-            this.taskSetterTable = new TaskSetterTable<long>();
-            this.Serializer = new DefaultSerializer();
-            this.TimeOut = TimeSpan.FromSeconds(30);
-        }
+
 
        
         /// <summary>

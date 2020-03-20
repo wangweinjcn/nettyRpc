@@ -1,4 +1,5 @@
 ﻿using NettyRPC;
+using NettyRPC.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace testServer
     {
         static void Main(string[] args)
         {
-            RpcServer rs = new RpcServer();
+            RpcServer rs = new RpcServer( new mpSerializer());
+           
             rs.start();
             var str = Console.ReadLine();
             while (str != "ccc")

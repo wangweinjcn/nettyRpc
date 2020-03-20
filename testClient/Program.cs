@@ -1,4 +1,5 @@
 ﻿using NettyRPC;
+using NettyRPC.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace testClient
             //Task.Run(() => testthreadMain());
             //Console.ReadLine();
             //return;
-            FastClient rc = new tClient();
+            RpcClient rc = new tClient( new mpSerializer());
+           
             rc.connect().GetAwaiter();
             var res1=  rc.InvokeApi<string>("GetVersion").GetAwaiter().GetResult();
             
@@ -27,6 +29,11 @@ namespace testClient
             {
                 res1 = rc.InvokeApi<string>("Echo", str, " world").GetAwaiter().GetResult();
                 Console.WriteLine("resutl2:{0}", res1);
+                List<object> testdata = new List<object>();
+                testdata.Add(new { dd = str });
+                testdata.Add(new { dd = res1 });
+                var res2 = rc.InvokeApi<string>("Echo2",testdata).GetAwaiter().GetResult();
+                Console.WriteLine("resutl:{0}", res2);
                 str= Console.ReadLine();
             }
 

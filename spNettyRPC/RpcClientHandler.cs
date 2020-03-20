@@ -16,8 +16,8 @@ namespace NettyRPC
 
     public class RpcClientHandler : SimpleChannelInboundHandler<FastPacket>
     {
-        private FastClient client;
-        public RpcClientHandler(FastClient _client)
+        private RpcClient client;
+        public RpcClientHandler(RpcClient _client)
         {
             this.client = _client;
         }

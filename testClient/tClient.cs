@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace testClient
 {
-   public class tClient:FastClient
+   public class tClient:RpcClient
     {
+        public tClient(ISerializer serializer):base(serializer)
+        { }
         [Api]
 
         public string GetVersion()

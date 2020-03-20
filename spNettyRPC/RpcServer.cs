@@ -60,7 +60,7 @@ namespace NettyRPC
         /// 获取或设置序列化工具
         /// 默认提供者是Json序列化
         /// </summary>
-        public ISerializer Serializer { get; set; }
+        public ISerializer Serializer { get; private set; }
 
         /// <summary>
         /// 获取全局过滤器管理者
@@ -85,8 +85,16 @@ namespace NettyRPC
         public RpcServer() : this(ServerSettings.backLength, ServerSettings.Port, false, "")
         {
         }
-
-        public RpcServer(int _backLength, int _port, bool _usessl, string _sslfile, string _sslpassword = "")
+        public RpcServer(ISerializer _serializer) : this(ServerSettings.backLength, ServerSettings.Port, false, "","",_serializer)
+        {
+        }
+        public RpcServer(int _backLength, int _port) : this(_backLength, _port, false, "", "", null)
+        {
+        }
+        public RpcServer(int _backLength, int _port,ISerializer _serializer) : this(_backLength, _port, false, "","",_serializer)
+        {
+        }
+        public RpcServer(int _backLength, int _port, bool _usessl, string _sslfile, string _sslpassword = "",ISerializer _serializer=null)
         {
             backLength = _backLength;
             port = _port;
@@ -98,7 +106,10 @@ namespace NettyRPC
             this.TaskSetterTable = new TaskSetterTable<long>();
 
             this.TimeOut = TimeSpan.FromSeconds(30);
-            this.Serializer = new DefaultSerializer();
+            if (_serializer == null)
+                this.Serializer = new DefaultSerializer();
+            else
+                this.Serializer = _serializer;
             this.GlobalFilters = new FastGlobalFilters();
             this.DependencyResolver = new DefaultDependencyResolver();
             this.FilterAttributeProvider = new DefaultFilterAttributeProvider();

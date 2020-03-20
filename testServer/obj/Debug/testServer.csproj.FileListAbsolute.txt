@@ -100,3 +100,6 @@ D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testServer\obj\D
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testServer\obj\Debug\testServer.csproj.CopyComplete
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testServer\obj\Debug\testServer.exe
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testServer\obj\Debug\testServer.pdb
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testServer\bin\Debug\MessagePack.dll
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testServer\bin\Debug\System.ValueTuple.dll
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testServer\bin\Debug\Newtonsoft.Json.xml

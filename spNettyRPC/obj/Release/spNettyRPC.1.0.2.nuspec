@@ -19,6 +19,7 @@
         <dependency id="DotNetty.Handlers" version="0.6.0" exclude="Build,Analyzers" />
         <dependency id="DotNetty.Transport" version="0.6.0" exclude="Build,Analyzers" />
         <dependency id="DotNetty.Transport.Libuv" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="MessagePack" version="1.9.11" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.FileExtensions" version="1.1.1" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
@@ -32,6 +33,7 @@
         <dependency id="DotNetty.Handlers" version="0.6.0" exclude="Build,Analyzers" />
         <dependency id="DotNetty.Transport" version="0.6.0" exclude="Build,Analyzers" />
         <dependency id="DotNetty.Transport.Libuv" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="MessagePack" version="2.1.90" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.FileExtensions" version="1.1.1" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />

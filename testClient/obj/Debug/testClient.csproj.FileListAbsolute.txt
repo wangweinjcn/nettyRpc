@@ -100,3 +100,5 @@ D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testClient\obj\D
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testClient\obj\Debug\testClient.csproj.CopyComplete
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testClient\obj\Debug\testClient.exe
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testClient\obj\Debug\testClient.pdb
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testClient\bin\Debug\MessagePack.dll
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\testClient\bin\Debug\System.ValueTuple.dll

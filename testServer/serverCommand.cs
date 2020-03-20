@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 namespace testServer
 {
     public class serverCommand : FastApiService
@@ -23,11 +23,21 @@ namespace testServer
         }
 
         [Api]
+        public string Echo2(List<object> data)
+        {
+            Console.WriteLine("echo2");
+            foreach(var obj in data)
+                Console.WriteLine(JsonConvert.SerializeObject(obj));
+            return "ok";
+
+
+        }
+        [Api]
 
         public string Echo(string param1,string param2)
         {
 
-            
+            Console.WriteLine(param1 + "--" + param2);
             return param2 + param1;
         }
         [Api]
