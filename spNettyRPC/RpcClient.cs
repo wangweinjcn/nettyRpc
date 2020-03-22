@@ -28,7 +28,7 @@ namespace NettyRPC
     /// </summary>
     public class RpcClient 
     {
-        public bool connected;
+        public bool connected { get; set; }
         private IPAddress host;
         private int port;
         private bool useSSl;
@@ -267,6 +267,7 @@ namespace NettyRPC
         /// </summary>
         protected  void OnDisconnected()
         {
+            connected=false
             var taskSetActions = this.taskSetterTable.RemoveAll();
             foreach (var taskSetAction in taskSetActions)
             {
