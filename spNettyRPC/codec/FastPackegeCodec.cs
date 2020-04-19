@@ -35,15 +35,18 @@ namespace NettyRPC.codec
 
         protected override Object Decode(IChannelHandlerContext ctx, IByteBuffer input)
         {
-            if (input == null)
+           // var x = base.Decode(ctx, input);
+            IByteBuffer bbin = input;
+            if (bbin == null)
             {
                 return null;
             }
-
+            bbin.MarkReaderIndex();
             FastPacket customMsg=null;
-            if (!FastPacket.Parse(input, out customMsg))
+            if (!FastPacket.Parse(bbin, out customMsg))
             {
-                throw new Exception("数据包格式错误");
+                bbin.ResetReaderIndex();
+                return null;
             }
             return customMsg;
         }

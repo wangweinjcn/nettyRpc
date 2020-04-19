@@ -109,13 +109,15 @@ namespace NettyRPC
         }
         public async Task DisposeAsync()
         {
-            await clientSession.CloseAsync();
+            if(clientSession!=null)
+                await clientSession.CloseAsync();
 
         }
 
         private bool Send(FastPacket pack)
         {
-            this.clientSession.WriteAndFlushAsync(pack);
+            lock(this.clientSession)
+                this.clientSession.WriteAndFlushAsync(pack);
             this.connected = true;
             return true;
         }
@@ -141,6 +143,7 @@ namespace NettyRPC
             }
             else
             {
+                
                 await TryProcessRequestPackageAsync(requestContext);
             }
         }
@@ -160,6 +163,8 @@ namespace NettyRPC
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 var exceptionContext = new ExceptionContext(requestContext, ex);
                 Common.SendRemoteException(this.clientSession, exceptionContext);
                 this.OnException(requestContext.Packet, ex);
@@ -210,6 +215,7 @@ namespace NettyRPC
         {
             try
             {
+                
                 return this.Send(package);
             }
             catch (Exception)
@@ -265,9 +271,9 @@ namespace NettyRPC
         /// <summary>
         /// 断开时清除数据任务列表  
         /// </summary>
-        protected  void OnDisconnected()
+        internal  void OnDisconnected()
         {
-            connected=false
+            connected = false;
             var taskSetActions = this.taskSetterTable.RemoveAll();
             foreach (var taskSetAction in taskSetActions)
             {
@@ -293,7 +299,8 @@ namespace NettyRPC
         async Task startClientAsync()
         {
             ClientId = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-            commSetting.SetConsoleLogger();
+            if(commSetting.useConsoleLoger)
+                 commSetting.SetConsoleLogger();
 
             var group = new MultithreadEventLoopGroup();
 

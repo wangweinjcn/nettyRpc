@@ -102,6 +102,7 @@ namespace NettyRPC.Fast
             var id = this.rpcServer.PacketIdProvider.NewId();
             var packet = new FastPacket(api, id, false);
             packet.SetBodyParameters(this.rpcServer.Serializer, parameters);
+            lock(this.channel)
             this.channel.WriteAndFlushAsync(packet);
         }
 
@@ -141,7 +142,7 @@ namespace NettyRPC.Fast
             {
                 throw new SocketException((int)SocketError.NotConnected);
             }
-
+            lock(this.channel)
             this.channel.WriteAndFlushAsync(pack);
             return 0;
 

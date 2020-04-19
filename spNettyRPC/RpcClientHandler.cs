@@ -43,9 +43,16 @@ namespace NettyRPC
                 if (eventState.State == IdleState.WriterIdle)
                 {
                     FastPacket fp = new FastPacket("$$$", -1, true);
-                    context.WriteAndFlushAsync(fp);
+                    lock(context.Channel)
+                         context.WriteAndFlushAsync(fp);
                 }
             }
+        }
+        public override void ChannelInactive(IChannelHandlerContext context)
+        {
+            Console.WriteLine("channel inactive");
+            this.client.OnDisconnected();
+            context.CloseAsync();
         }
 
         public override void ExceptionCaught(IChannelHandlerContext contex, Exception e)

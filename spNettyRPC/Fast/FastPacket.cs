@@ -72,6 +72,7 @@ namespace NettyRPC.Fast
             this.ApiName = api;
             this.Id = id;
             this.IsFromClient = fromClient;
+            this.Body = null;
         }
         /// <summary>
         /// 将参数序列化并写入为Body
@@ -112,11 +113,16 @@ namespace NettyRPC.Fast
             }
 
             var index = 0;
+            Console.WriteLine("GetBodyParameters {0},{1}",index,Body.Length);
             while (index < this.Body.Length)
             {
                 // 参数长度
                 var length = ByteConverter.ToInt32(this.Body, index, Endians.Big);
+
                 index = index + 4;
+                Console.WriteLine("GetBodyParameters {0},{1}",index,length);
+                //if (length > Body.Length)
+                //    break;
                 var paramBytes = new byte[length];
                 // 复制出参数的数据
                 Buffer.BlockCopy(this.Body, index, paramBytes, 0, length);
@@ -138,13 +144,13 @@ namespace NettyRPC.Fast
             packet = null;
             const int packetMinSize = 16;
             var allpakagesize = streamReader.ReadableBytes;
-            if (streamReader.ReadableBytes < packetMinSize || streamReader.ReadByte() != FastPacket.Mark)
+            if (streamReader.ReadableBytes < packetMinSize || streamReader.ReadByte() != FastPacket.Mark) //1
             {
                 return false;
             }
 
             
-            var totalBytes = streamReader.ReadInt();
+            var totalBytes = streamReader.ReadInt();//4
             if (totalBytes < packetMinSize)
             {
                 return false;
@@ -157,26 +163,29 @@ namespace NettyRPC.Fast
             }
 
             // api名称数据长度
-            var apiNameLength = streamReader.ReadByte();
+            var apiNameLength = streamReader.ReadByte();//1
             if (totalBytes < apiNameLength + packetMinSize)
             {
                 return false;
             }
-
+              var headLength = apiNameLength + 16;
             // api名称数据
 
             byte[] apiNameBytes = new byte[apiNameLength];
             streamReader.ReadBytes(apiNameBytes,0,apiNameLength);
             // 标识符
-            var id = streamReader.ReadLong();
+            var id = streamReader.ReadLong(); //8
             // 是否为客户端封包
-            var isFromClient = streamReader.ReadBoolean();
+            var isFromClient = streamReader.ReadBoolean();//1
             // 是否异常
-            var isException = streamReader.ReadBoolean();
+            var isException = streamReader.ReadBoolean();//1
             // 实体数据
-            byte[] body = new byte[streamReader.ReadableBytes];
-             streamReader.ReadBytes(body,0,body.Length);
-
+            byte[] body = null;
+            if (totalBytes > headLength)
+            {
+                 body = new byte[totalBytes-headLength];
+                streamReader.ReadBytes(body, 0, body.Length);
+            }
             var apiName = Encoding.UTF8.GetString(apiNameBytes);
             packet = new FastPacket(apiName, id, isFromClient)
             {
@@ -194,16 +203,16 @@ namespace NettyRPC.Fast
             var apiNameBytes = Encoding.UTF8.GetBytes(this.ApiName);
             var headLength = apiNameBytes.Length + 16;
             this.TotalBytes = this.Body == null ? headLength : headLength + this.Body.Length;
-
+            
             this.ApiNameLength = (byte)apiNameBytes.Length;
             var bb = Unpooled.Buffer(TotalBytes);
-            bb.WriteByte(FastPacket.Mark);
-            bb.WriteInt(this.TotalBytes);
-            bb.WriteByte(this.ApiNameLength);
-            bb.WriteBytes(apiNameBytes);
-            bb.WriteLong(this.Id);
-            bb.WriteBoolean(this.IsFromClient);
-            bb.WriteBoolean(this.IsException);
+            bb.WriteByte(FastPacket.Mark); //1
+            bb.WriteInt(this.TotalBytes);  //4
+            bb.WriteByte(this.ApiNameLength);//1 
+            bb.WriteBytes(apiNameBytes); //
+            bb.WriteLong(this.Id);//8
+            bb.WriteBoolean(this.IsFromClient);//1
+            bb.WriteBoolean(this.IsException);//1
             if(this.Body!=null)
             bb.WriteBytes(this.Body);
             return bb;

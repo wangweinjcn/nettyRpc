@@ -68,6 +68,7 @@ namespace NettyRPC.Fast
             }
             catch (Exception ex)
             {
+                Console.WriteLine("IFastApiService.ExecuteAsync exception:{0}",ex.Message+ex.StackTrace);
                 this.ProcessExecutingException(actionContext, filters, ex);
             }
         }
@@ -93,7 +94,9 @@ namespace NettyRPC.Fast
         /// <returns></returns>
         private async Task ExecuteActionAsync(ActionContext actionContext, IEnumerable<IFilter> filters)
         {
+            Console.WriteLine("ExecuteActionAsync "+actionContext.Action.ApiName);
             Common.GetAndUpdateParameterValues(this.rpcServer.Serializer, actionContext);
+
             this.ExecFiltersBeforeAction(filters, actionContext);
 
             if (actionContext.Result == null)
@@ -102,6 +105,7 @@ namespace NettyRPC.Fast
             }
             else
             {
+                 Console.WriteLine("ExecuteActionAsync  have exception:{0}", actionContext.Result);
                 var exceptionContext = new ExceptionContext(actionContext, actionContext.Result);
                 Common.SendRemoteException(actionContext.Session.channel, exceptionContext);
             }
@@ -115,20 +119,25 @@ namespace NettyRPC.Fast
         /// <returns></returns>
         private async Task ExecutingActionAsync(ActionContext actionContext, IEnumerable<IFilter> filters)
         {
+            Console.WriteLine("ExecutingActionAsync 1");
             var paramters = actionContext.Action.Parameters.Select(p => p.Value).ToArray();
+
             OnActionExecuting(actionContext);
             var result = await actionContext.Action.ExecuteAsync(this, paramters);
             OnActionExecuted(actionContext);
             this.ExecFiltersAfterAction(filters, actionContext);
+             Console.WriteLine("ExecutingActionAsync 2");
             if (actionContext.Result != null)
             {
+                 Console.WriteLine("ExecutingActionAsync now exception :{0}",actionContext.Result);
                 var exceptionContext = new ExceptionContext(actionContext, actionContext.Result);
                 Common.SendRemoteException(actionContext.Session.channel, exceptionContext);
             }
             else if (actionContext.Action.IsVoidReturn == false && actionContext.Session.IsConnected)  // 返回数据
             {
                 actionContext.Packet.Body = this.rpcServer.Serializer.Serialize(result);
-                actionContext.Session.Send(actionContext.Packet);
+                lock( actionContext.Session)
+                    actionContext.Session.Send(actionContext.Packet);
             }
         }
 

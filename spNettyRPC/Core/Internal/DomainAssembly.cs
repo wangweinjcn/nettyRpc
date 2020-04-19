@@ -19,12 +19,13 @@ namespace NettyRPC.Core
         public static List<Assembly> GetAssemblies()
         {
             var current = Assembly.GetAssembly(typeof(DomainAssembly));
-            return AppDomain
+            var list= AppDomain
                 .CurrentDomain
                 .GetAssemblies()
                 .Where(item => item.GlobalAssemblyCache == false)
                 .Where(item => item != current)
                 .ToList();
+            return list;
         }
     }
 }

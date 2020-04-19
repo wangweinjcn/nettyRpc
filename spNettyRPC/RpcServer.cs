@@ -128,6 +128,7 @@ namespace NettyRPC
         /// <param name="assembly">程序集</param>
         private void BindService(Assembly assembly)
         {
+           // Console.WriteLine(assembly.FullName);
             var fastApiServices = assembly.GetTypes().Where(item =>
                 item.IsAbstract == false
                 && item.IsInterface == false
@@ -353,9 +354,12 @@ namespace NettyRPC
         MultithreadEventLoopGroup workerGroup;
 
         async Task RunServerAsync()
-        {          
+        {
 
-             bossGroup = new MultithreadEventLoopGroup(1);
+
+            if (commSetting.useConsoleLoger)
+                commSetting.SetConsoleLogger();
+            bossGroup = new MultithreadEventLoopGroup(1);
              workerGroup = new MultithreadEventLoopGroup();
 
             var SERVER_HANDLER = new RpcServerHandler(this);
@@ -372,7 +376,7 @@ namespace NettyRPC
                     .Group(bossGroup, workerGroup)
                     .Channel<CustTcpServerSocketChannel>()
                     .Option(ChannelOption.SoBacklog, backLength)
-                    .Handler(new LoggingHandler(LogLevel.INFO))
+                   // .Handler(new LoggingHandler(LogLevel.INFO))
                     .ChildHandler(new ActionChannelInitializer<ISocketChannel>(channel =>
                     {
                         IChannelPipeline pipeline = channel.Pipeline;

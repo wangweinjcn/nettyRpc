@@ -54,10 +54,14 @@ namespace NettyRPC.Fast
             }
             catch (SerializerException ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 return taskSetAction.SetException(ex);
             }
             catch (Exception ex)
             {
+                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 return taskSetAction.SetException(new SerializerException(ex));
             }
         }
@@ -71,6 +75,7 @@ namespace NettyRPC.Fast
         /// <returns></returns>
         public static bool SetApiActionTaskException(TaskSetterTable<long> taskSetActionTable, RequestContext requestContext)
         {
+            Console.WriteLine("SetApiActionTaskException");
             var taskSetAction = taskSetActionTable.Remove(requestContext.Packet.Id);
             if (taskSetAction == null)
             {
@@ -79,6 +84,7 @@ namespace NettyRPC.Fast
 
             var exceptionBytes = requestContext.Packet.Body;
             var message = exceptionBytes == null ? string.Empty : Encoding.UTF8.GetString(exceptionBytes);
+            Console.WriteLine("SetApiActionTaskException:{0}",message);
             var exception = new RemoteException(message);
             return taskSetAction.SetException(exception);
         }
@@ -96,7 +102,8 @@ namespace NettyRPC.Fast
                 var packet = exceptionContext.Packet;
                 packet.IsException = true;
                 packet.Body = Encoding.UTF8.GetBytes(exceptionContext.Exception.Message);
-                session.WriteAndFlushAsync(packet);
+                lock(session)
+                 session.WriteAndFlushAsync(packet);
                 return true;
             }
             catch (Exception)
@@ -120,6 +127,7 @@ namespace NettyRPC.Fast
         public static ApiResult<T> InvokeApi<T>(IChannel session, TaskSetterTable<long> taskSetActionTable, ISerializer serializer, FastPacket packet, TimeSpan timeout)
         {
             var taskSetter = taskSetActionTable.Create<T>(packet.Id, timeout);
+            lock(session)
              session.WriteAndFlushAsync(packet);
             return new ApiResult<T>(taskSetter);
         }

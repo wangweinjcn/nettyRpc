@@ -9,18 +9,18 @@ namespace NettyRPC
         {
             get
             {
-                string ssl = commSetting.Configuration["ssl"];
+                string ssl =commSetting.Configuration!=null? commSetting.Configuration["nettyServer:ssl"]:"false";
                 return !string.IsNullOrEmpty(ssl) && bool.Parse(ssl);
             }
         }
-        public static int backLength => int.Parse(commSetting.Configuration["backLength"]);
-        public static int Port => int.Parse(commSetting.Configuration["port"]);
+        public static int backLength =>commSetting.Configuration!=null? int.Parse(commSetting.Configuration["nettyServer:backLength"]):100;
+        public static int Port =>commSetting.Configuration!=null? int.Parse(commSetting.Configuration["nettyServer:port"]):-1;
 
         public static bool UseLibuv
         {
             get
             {
-                string libuv = commSetting.Configuration["libuv"];
+                string libuv =commSetting.Configuration!=null? commSetting.Configuration["nettyServer:libuv"]:"false";
                 return !string.IsNullOrEmpty(libuv) && bool.Parse(libuv);
             }
         }

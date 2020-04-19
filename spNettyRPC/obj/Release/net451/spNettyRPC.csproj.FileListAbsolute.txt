@@ -31,3 +31,4 @@ D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\R
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Release\net451\spNettyRPC.pdb
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Release\net451\MessagePack.dll
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Release\net451\System.ValueTuple.dll
+D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Release\net451\spNettyRPC.csprojAssemblyReference.cache
