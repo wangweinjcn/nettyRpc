@@ -15,11 +15,12 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("wangwei")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("dotnet core rpc framwork base dotnetty")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.4.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.4")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.6.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.6")]
 [assembly: System.Reflection.AssemblyProductAttribute("spNettyRPC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("spNettyRPC")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.4.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.6.0")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/wangweinjcn/nettyRpc.git")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

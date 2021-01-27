@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
-      "spNettyRPC/1.0.4": {
+      "spNettyRPC/1.0.6": {
         "dependencies": {
           "DotNetty.Buffers": "0.6.0",
           "DotNetty.Codecs": "0.6.0",
@@ -1193,7 +1193,7 @@
     }
   },
   "libraries": {
-    "spNettyRPC/1.0.4": {
+    "spNettyRPC/1.0.6": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

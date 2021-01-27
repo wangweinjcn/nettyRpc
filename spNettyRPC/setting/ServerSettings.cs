@@ -5,6 +5,13 @@ namespace NettyRPC
 {
     public static class ServerSettings
     {
+        private static int getconfigInt(string str,int defaultvalue)
+        {
+            int ret = defaultvalue;
+            var tmp=commSetting.Configuration!=null? commSetting.Configuration[str]:defaultvalue.ToString();
+            int.TryParse(tmp, out ret);
+            return ret;
+        }
         public static bool IsSsl
         {
             get
@@ -13,8 +20,9 @@ namespace NettyRPC
                 return !string.IsNullOrEmpty(ssl) && bool.Parse(ssl);
             }
         }
-        public static int backLength =>commSetting.Configuration!=null? int.Parse(commSetting.Configuration["nettyServer:backLength"]):100;
-        public static int Port =>commSetting.Configuration!=null? int.Parse(commSetting.Configuration["nettyServer:port"]):-1;
+        public static int backLength =>commSetting.Configuration!=null? getconfigInt("nettyServer:backLength",100):100;
+        public static int Port =>commSetting.Configuration!=null?  getconfigInt("nettyServer:port",-1):-1;
+        public static int TimeOut =>commSetting.Configuration!=null?  getconfigInt("nettyServer:TimeOut",60):60;
 
         public static bool UseLibuv
         {

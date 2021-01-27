@@ -5,12 +5,12 @@
   },
   "projects": {
     "D:\\document\\workSpace\\projects\\dotnetCore\\open_microService\\rpc\\spNettyRPC\\spNettyRPC.csproj": {
-      "version": "1.0.4",
+      "version": "1.0.6",
       "restore": {
         "projectUniqueName": "D:\\document\\workSpace\\projects\\dotnetCore\\open_microService\\rpc\\spNettyRPC\\spNettyRPC.csproj",
         "projectName": "spNettyRPC",
         "projectPath": "D:\\document\\workSpace\\projects\\dotnetCore\\open_microService\\rpc\\spNettyRPC\\spNettyRPC.csproj",
-        "packagesPath": "C:\\Users\\wangwei\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\ww\\.nuget\\packages\\",
         "outputPath": "D:\\document\\workSpace\\projects\\dotnetCore\\open_microService\\rpc\\spNettyRPC\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
@@ -19,7 +19,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\wangwei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ww\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -29,14 +29,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://nugetserver.njxhby.com/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.0": {
+            "targetAlias": "netcoreapp2.0",
             "projectReferences": {}
           },
           "net451": {
+            "targetAlias": "net451",
             "projectReferences": {}
           }
         },
@@ -48,6 +49,7 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
+          "targetAlias": "netcoreapp2.0",
           "dependencies": {
             "DotNetty.Buffers": {
               "target": "Package",
@@ -114,9 +116,10 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         },
         "net451": {
+          "targetAlias": "net451",
           "dependencies": {
             "DotNetty.Buffers": {
               "target": "Package",
@@ -167,7 +170,7 @@
               "version": "[10.0.1, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

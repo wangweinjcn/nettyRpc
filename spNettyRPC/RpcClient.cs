@@ -104,8 +104,8 @@ namespace NettyRPC
         }
         public async Task connect()
         {
-          await  this.startClientAsync();
-            connected = true;
+          await  this.startClientAsync();          
+           
         }
         public async Task DisposeAsync()
         {
@@ -118,7 +118,7 @@ namespace NettyRPC
         {
             lock(this.clientSession)
                 this.clientSession.WriteAndFlushAsync(pack);
-            this.connected = true;
+           
             return true;
         }
         

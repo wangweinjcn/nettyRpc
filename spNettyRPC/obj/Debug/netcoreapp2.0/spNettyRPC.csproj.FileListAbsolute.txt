@@ -23,4 +23,3 @@ D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\D
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\netcoreapp2.0\spNettyRPC.AssemblyInfo.cs
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\netcoreapp2.0\spNettyRPC.dll
 D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\netcoreapp2.0\spNettyRPC.pdb
-D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\netcoreapp2.0\spNettyRPC.csprojAssemblyReference.cache

@@ -82,19 +82,22 @@ namespace NettyRPC
         /// </summary>
         private ConcurrentDictionary<string, FastSession> allSessions { get; set; }
 
-        public RpcServer() : this(ServerSettings.backLength, ServerSettings.Port, false, "")
+        public RpcServer() : this(ServerSettings.backLength, ServerSettings.Port, false, "",ServerSettings.TimeOut)
         {
         }
-        public RpcServer(ISerializer _serializer) : this(ServerSettings.backLength, ServerSettings.Port, false, "","",_serializer)
+        public RpcServer(ISerializer _serializer) : this(ServerSettings.backLength, ServerSettings.Port, false, "",ServerSettings.TimeOut,"",_serializer)
         {
         }
-        public RpcServer(int _backLength, int _port) : this(_backLength, _port, false, "", "", null)
+        public RpcServer(int _backLength, int _port) : this(_backLength, _port, false, "",ServerSettings.TimeOut, "", null)
         {
         }
-        public RpcServer(int _backLength, int _port,ISerializer _serializer) : this(_backLength, _port, false, "","",_serializer)
+        public RpcServer(int _backLength, int _port, ISerializer _serializer) : this(_backLength, _port, false, "", ServerSettings.TimeOut, "", _serializer)
         {
         }
-        public RpcServer(int _backLength, int _port, bool _usessl, string _sslfile, string _sslpassword = "",ISerializer _serializer=null)
+        public RpcServer(int _backLength, int _port,int _timeout,ISerializer _serializer) : this(_backLength, _port, false, "",_timeout,"",_serializer)
+        {
+        }
+        public RpcServer(int _backLength, int _port, bool _usessl, string _sslfile,int timeoutSec, string _sslpassword = "",ISerializer _serializer=null)
         {
             backLength = _backLength;
             port = _port;
@@ -105,7 +108,7 @@ namespace NettyRPC
             this.PacketIdProvider = new PacketIdProvider();
             this.TaskSetterTable = new TaskSetterTable<long>();
 
-            this.TimeOut = TimeSpan.FromSeconds(30);
+            this.TimeOut = TimeSpan.FromSeconds(timeoutSec);
             if (_serializer == null)
                 this.Serializer = new DefaultSerializer();
             else
