@@ -4,7 +4,6 @@
     <id>spNettyRPC</id>
     <version>1.0.6</version>
     <authors>spNettyRPC</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>dotnet core rpc framwork base dotnetty</description>
     <releaseNotes>1.0.1 增加获取所有的session函数和查找session函数
 1.0.2 增加OnActionExecuting和OnActionExecuted 触发器函数
@@ -51,7 +50,7 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net451\spNettyRPC.dll" target="lib\net451\spNettyRPC.dll" />
-    <file src="D:\document\workSpace\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\netcoreapp2.0\spNettyRPC.dll" target="lib\netcoreapp2.0\spNettyRPC.dll" />
+    <file src="D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net451\spNettyRPC.dll" target="lib\net451\spNettyRPC.dll" />
+    <file src="D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\netcoreapp2.0\spNettyRPC.dll" target="lib\netcoreapp2.0\spNettyRPC.dll" />
   </files>
 </package>

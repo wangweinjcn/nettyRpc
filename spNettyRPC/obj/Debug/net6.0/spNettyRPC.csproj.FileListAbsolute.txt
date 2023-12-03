@@ -1,0 +1,12 @@
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net6.0\spNettyRPC.deps.json
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net6.0\spNettyRPC.dll
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net6.0\spNettyRPC.pdb
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.csproj.AssemblyReference.cache
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.GeneratedMSBuildEditorConfig.editorconfig
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.AssemblyInfoInputs.cache
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.AssemblyInfo.cs
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.csproj.CoreCompileInputs.cache
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.dll
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\refint\spNettyRPC.dll
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.pdb
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\ref\spNettyRPC.dll

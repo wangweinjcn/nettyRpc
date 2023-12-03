@@ -9,6 +9,7 @@ namespace NettyRPC
     using Microsoft.Extensions.Logging.Console;
     using DotNetty.Buffers;
     using System.IO;
+    using Microsoft.Extensions.Logging;
 
     public static class commSetting
     {
@@ -140,16 +141,19 @@ namespace NettyRPC
         {
             get
             {
-#if NETSTANDARD1_3
-                return AppContext.BaseDirectory;
-#else
+ 
                 return AppDomain.CurrentDomain.BaseDirectory;
-#endif
+ 
             }
         }
 
         public static IConfigurationRoot Configuration { get; }
 
+#if NET6_0_OR_GREATER
+        public static void SetConsoleLogger() => InternalLoggerFactory.DefaultFactory = LoggerFactory.Create(builder => builder.AddConsole());
+#endif
+#if NET472 || NET451_OR_GREATER  
         public static void SetConsoleLogger() => InternalLoggerFactory.DefaultFactory.AddProvider(new ConsoleLoggerProvider((s, level) => true, false));
-    }
+#endif
+        }
 }

@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = NettyRPC
+build_property.ProjectDir = D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\

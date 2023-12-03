@@ -7,6 +7,7 @@ namespace DotNetty.Transport.Channels
     using System.Threading.Tasks;
     using DotNetty.Common.Concurrency;
     using DotNetty.Common.Internal.Logging;
+    using TaskCompletionSource = Common.Concurrency.TaskCompletionSource;
 
     public static class custUtil
     {

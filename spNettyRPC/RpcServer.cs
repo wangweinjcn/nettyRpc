@@ -360,8 +360,8 @@ namespace NettyRPC
         {
 
 
-            if (commSetting.useConsoleLoger)
-                commSetting.SetConsoleLogger();
+            //if (commSetting.useConsoleLoger)
+            //    commSetting.SetConsoleLogger();
             bossGroup = new MultithreadEventLoopGroup(1);
              workerGroup = new MultithreadEventLoopGroup();
 
@@ -379,7 +379,7 @@ namespace NettyRPC
                     .Group(bossGroup, workerGroup)
                     .Channel<CustTcpServerSocketChannel>()
                     .Option(ChannelOption.SoBacklog, backLength)
-                   // .Handler(new LoggingHandler(LogLevel.INFO))
+                    // .Handler(new LoggingHandler(LogLevel.INFO))
                     .ChildHandler(new ActionChannelInitializer<ISocketChannel>(channel =>
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
@@ -387,19 +387,23 @@ namespace NettyRPC
                         {
                             pipeline.AddLast(TlsHandler.Server(tlsCertificate));
                         }
-                         pipeline.AddLast(new IdleStateHandler(commSetting.IdleStateTime, 0, 0));
+                        pipeline.AddLast(new IdleStateHandler(commSetting.IdleStateTime, 0, 0));
                         pipeline.AddLast(new FastPacketDecode(commSetting.MAX_FRAME_LENGTH, commSetting.LENGTH_FIELD_OFFSET, commSetting.LENGTH_FIELD_LENGTH, commSetting.LENGTH_ADJUSTMENT, commSetting.INITIAL_BYTES_TO_STRIP, false));
                         pipeline.AddLast(new FastPacketEncoder(), SERVER_HANDLER);
-                       
+
                     }));
 
-                rpcServerChannel = AsyncHelpers.RunSync<IChannel>(()=> bootstrap.BindAsync(port));
+                rpcServerChannel = AsyncHelpers.RunSync<IChannel>(() => bootstrap.BindAsync(port));
 
-                               
+
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("errors :"+exp.Message);
             }
             finally
             {
-                
+
             }
         }
     }

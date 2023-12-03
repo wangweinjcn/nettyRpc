@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>spNettyRPC</id>
+    <version>1.1.0</version>
+    <authors>spNettyRPC</authors>
+    <description>dotnet core rpc framwork base dotnetty</description>
+    <releaseNotes>1.0.1 增加获取所有的session函数和查找session函数
+      1.0.2 增加OnActionExecuting和OnActionExecuted 触发器函数
+      1.0.3 添加messagePack的打包模式，增加rpcServer和rpcCLient的构造函数
+      1.0.4 修复bug，对IChannel加锁保护；
+      1.0.5 修复对connected状态的判断处理
+      1.0.6 修改超时配置
+      1.1.0  升级组件，支持.net6 /net472</releaseNotes>
+    <copyright>wangwei</copyright>
+    <repository url="https://github.com/wangweinjcn/nettyRpc.git" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.1">
+        <dependency id="DotNetty.Buffers" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Codecs" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Common" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Handlers" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport.Libuv" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="MessagePack" version="1.9.11" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.FileExtensions" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Console" version="1.1.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETFramework4.7.2">
+        <dependency id="DotNetty.Buffers" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Codecs" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Common" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Handlers" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport.Libuv" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="MessagePack" version="2.5.108" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.FileExtensions" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Console" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0">
+        <dependency id="DotNetty.Buffers" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Codecs" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Common" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Handlers" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Transport.Libuv" version="0.7.5" exclude="Build,Analyzers" />
+        <dependency id="MessagePack" version="2.5.108" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.FileExtensions" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Console" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.Web.Extensions" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="Microsoft.Win32.Primitives" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.AppContext" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Console" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Diagnostics.Tracing" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Globalization.Calendars" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.IO.Compression" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.IO.Compression.ZipFile" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.IO" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.IO.FileSystem" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.IO.FileSystem.Primitives" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Linq" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Linq.Expressions" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Net.Http" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Net.Sockets" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Reflection" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Runtime" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Runtime.Extensions" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Runtime.InteropServices" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Runtime.InteropServices.RuntimeInformation" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Algorithms" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Encoding" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Primitives" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.X509Certificates" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Text.RegularExpressions" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Xml.ReaderWriter" targetFramework=".NETFramework4.7.2" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net451\spNettyRPC.dll" target="lib\net451\spNettyRPC.dll" />
+    <file src="D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net472\spNettyRPC.dll" target="lib\net472\spNettyRPC.dll" />
+    <file src="D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\bin\Debug\net6.0\spNettyRPC.dll" target="lib\net6.0\spNettyRPC.dll" />
+  </files>
+</package>
