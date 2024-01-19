@@ -7469,7 +7469,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "http://nexus.xhbynj.com:7000/repository/nuget-group/index.json": {},
+        "http://nexus.deps.njxhby.com:7000/repository/nuget-group/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7674,7 +7674,7 @@
       "code": "NU1803",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "正在通过 “HTTP” 源“http://nexus.xhbynj.com:7000/repository/nuget-group/index.json”运行“restore”操作。将来的版本中将删除非 HTTPS 访问权限。请考虑迁移到 “HTTPS” 源。"
+      "message": "正在通过 “HTTP” 源“http://nexus.deps.njxhby.com:7000/repository/nuget-group/index.json”运行“restore”操作。将来的版本中将删除非 HTTPS 访问权限。请考虑迁移到 “HTTPS” 源。"
     }
   ]
 }

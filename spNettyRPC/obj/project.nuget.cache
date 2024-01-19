@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aecX+qgvfOZBK2+aU52ei0Ny6oLt+TwgqoNQcDuTMLBCvymUIBkpzpZVABeM+qF65hcIH2YjBQc/3J2Ltx5xqA==",
+  "dgSpecHash": "uR0ETnX3UErJarJO/JLwQsKwj238nx7WKD0NLWUn3CIqlURht5wZg5W7fS+54sWX+sYkVJHH1+HEzwjCiEo1dg==",
   "success": true,
   "projectFilePath": "D:\\projects\\dotnetCore\\open_microService\\rpc\\spNettyRPC\\spNettyRPC.csproj",
   "expectedPackageFiles": [
@@ -131,7 +131,7 @@
       "code": "NU1803",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "正在通过 “HTTP” 源“http://nexus.xhbynj.com:7000/repository/nuget-group/index.json”运行“restore”操作。将来的版本中将删除非 HTTPS 访问权限。请考虑迁移到 “HTTPS” 源。"
+      "message": "正在通过 “HTTP” 源“http://nexus.deps.njxhby.com:7000/repository/nuget-group/index.json”运行“restore”操作。将来的版本中将删除非 HTTPS 访问权限。请考虑迁移到 “HTTPS” 源。"
     }
   ]
 }

@@ -29,11 +29,11 @@ namespace NettyRPC
                     if (eventState.State == IdleState.ReaderIdle)
                     {
                         lossConnectCount++;
-                        if (lossConnectCount > 2)
+                        if (lossConnectCount > 20)
                         {
                             //("关闭这个不活跃通道！");
                             Console.WriteLine("close ");
-                            context.CloseAsync();
+                        //    context.CloseAsync();
                         }
                     }
                 }
