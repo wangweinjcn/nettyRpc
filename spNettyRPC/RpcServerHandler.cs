@@ -32,8 +32,8 @@ namespace NettyRPC
                         if (lossConnectCount > 20)
                         {
                             //("关闭这个不活跃通道！");
-                            Console.WriteLine("close ");
-                        //    context.CloseAsync();
+                            Console.WriteLine("close 不活跃通道！");
+                            context.CloseAsync();
                         }
                     }
                 }
@@ -52,7 +52,7 @@ namespace NettyRPC
         public override void ChannelRegistered(IChannelHandlerContext context)
 
         {
-           string ClientId = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+           string ClientId = DateTime.Now.ToString("yyyyMMdd-HHmmss.fff");
             base.ChannelRegistered(context);
             var type = context.Channel.GetType();
             var ctssc = context.Channel as CustTcpSocketChannel;
@@ -86,7 +86,7 @@ namespace NettyRPC
             if (msg.ApiName == "$$$")
             {
                 Console.WriteLine("receive idle message");
-                //contex.WriteAndFlushAsync("");
+                contex.WriteAndFlushAsync("");
             }
             else
                 this.ownerServer.ProcessPacketAsync(contex.Channel, msg);

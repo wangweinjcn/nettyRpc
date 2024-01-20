@@ -43,8 +43,8 @@ namespace NettyRPC
                 if (eventState.State == IdleState.WriterIdle)
                 {
                     FastPacket fp = new FastPacket("$$$", -1, true);
-                    lock(context.Channel)
-                         context.WriteAndFlushAsync(fp);
+                    lock (context.Channel)
+                        context.WriteAndFlushAsync(fp);
                 }
             }
         }

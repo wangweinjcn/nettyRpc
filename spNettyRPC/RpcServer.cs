@@ -131,15 +131,7 @@ namespace NettyRPC
         /// <param name="assembly">程序集</param>
         private void BindService(Assembly assembly)
         {
-            //Console.WriteLine(assembly.FullName);
-            //if (assembly.FullName.Contains("data.Service"))
-            //{
-            //    Console.WriteLine(assembly.FullName);
-            //    foreach (var item in assembly.GetTypes())
-            //    {
-            //        Console.WriteLine("{0}:{1}:{2}:{3}", item.Name, item.IsAbstract, item.IsInterface, typeof(IFastApiService).IsAssignableFrom(item));
-            //    }
-            //}
+
            
             var fastApiServices = assembly.GetTypes().Where(item =>
                 item.IsAbstract == false

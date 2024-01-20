@@ -13,15 +13,15 @@ namespace NettyRPC
 
     public static class commSetting
     {
-        public static int MAX_FRAME_LENGTH { get; set; }
-        public static  int LENGTH_FIELD_LENGTH { get; set; }
-        public static  int LENGTH_FIELD_OFFSET { get; set; }
-        public static  int LENGTH_ADJUSTMENT { get; set; }
-        public static  int INITIAL_BYTES_TO_STRIP { get; set; }
+        public static int MAX_FRAME_LENGTH { get; set; } = 1024 * 1024 * 100;
+        public static int LENGTH_FIELD_LENGTH { get; set; } = 4;
+        public static int LENGTH_FIELD_OFFSET { get; set; } = 1;
+        public static int LENGTH_ADJUSTMENT { get; set; } = 0;
+        public static int INITIAL_BYTES_TO_STRIP { get; set; } = 0;
         /// <summary>
         /// 心跳检测机制，单位秒
         /// </summary>
-        public static int IdleStateTime { get; set; }
+        public static int IdleStateTime { get; set; } = 15;
   
         public static IByteBuffer[] httpDelimiter()
         {

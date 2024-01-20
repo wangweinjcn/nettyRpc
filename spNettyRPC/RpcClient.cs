@@ -26,9 +26,9 @@ namespace NettyRPC
     /// <summary>
     /// 表示Fast协议的tcp客户端
     /// </summary>
-    public class RpcClient 
+    public abstract class RpcClient 
     {
-        public bool connected { get; set; }
+        protected bool _connected { get; set; }
         private IPAddress host;
         private int port;
         private bool useSSl;
@@ -99,9 +99,11 @@ namespace NettyRPC
                 this.Serializer = new DefaultSerializer();
             else
                 this.Serializer = _serializer;
-            this.TimeOut = TimeSpan.FromSeconds(30);
+            this.TimeOut = TimeSpan.FromSeconds(20);
 
         }
+        public virtual void refreshConnect()
+        { }
         public async Task connect()
         {
           await  this.startClientAsync();          
@@ -220,7 +222,7 @@ namespace NettyRPC
             }
             catch (Exception)
             {
-                connected = false;
+                _connected = false;
                 return false;
             }
         }
@@ -233,7 +235,7 @@ namespace NettyRPC
         /// <param name="exception">异常对象</param> 
         protected virtual void OnException(FastPacket packet, Exception exception)
         {
-            connected = false;
+            _connected = false;
         }
 
         /// <summary>
@@ -249,7 +251,37 @@ namespace NettyRPC
             packet.SetBodyParameters(this.Serializer, parameters);
             this.Send(packet);
         }
+        public  async Task< T> InvokeApi<T>(string api, params object[] parameters)
+        {
+            int retrycount = 5;
+            int i = 0;
+            if (!this._connected)
+            {
 
+                refreshConnect();
+            }
+            while (i < retrycount)
+            {
+                try
+                {
+                    var id = this.packetIdProvider.NewId();
+                    var packet = new FastPacket(api, id, true);
+                    packet.SetBodyParameters(this.Serializer, parameters);
+                    var x= Common.InvokeApi<T>(this.clientSession, this.taskSetterTable, this.Serializer, packet, this.TimeOut);
+                    return await x.GetTask();
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine("InvokeApi ex:", exception.ToString());
+                    i++;
+                    this.clientSession.DisconnectAsync().GetAwaiter().GetResult();
+                    this.clientSession.CloseAsync().GetAwaiter().GetResult();
+                    Thread.Sleep(1000);
+                    refreshConnect();
+                }
+            }
+            throw new Exception("can't remote execute");
+        }
         /// <summary>
         /// 调用服务端实现的Api   
         /// 并返回结果数据任务
@@ -260,12 +292,35 @@ namespace NettyRPC
         /// <exception cref="SocketException"></exception>        
         /// <exception cref="SerializerException"></exception>
         /// <returns>远程数据任务</returns>    
-        public ApiResult<T> InvokeApi<T>(string api, params object[] parameters)
+        public  ApiResult<T> InvokeApiOld<T>(string api, params object[] parameters)
         {
-            var id = this.packetIdProvider.NewId();
-            var packet = new FastPacket(api, id, true);
-            packet.SetBodyParameters(this.Serializer, parameters);
-            return Common.InvokeApi<T>(this.clientSession, this.taskSetterTable, this.Serializer, packet, this.TimeOut);
+            int retrycount = 5;
+            int i = 0;
+            if (!this._connected)
+            {
+
+               refreshConnect();
+            }
+            while (i < retrycount)
+            {
+                try
+                {
+                    var id = this.packetIdProvider.NewId();
+                    var packet = new FastPacket(api, id, true);
+                    packet.SetBodyParameters(this.Serializer, parameters);
+                    return Common.InvokeApi<T>(this.clientSession, this.taskSetterTable, this.Serializer, packet, this.TimeOut);
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine("InvokeApi ex:", exception.ToString());
+                    i++;                    
+                     this.clientSession.DisconnectAsync().GetAwaiter().GetResult();
+                     this.clientSession.CloseAsync().GetAwaiter().GetResult();
+                    Thread.Sleep(100);
+                    refreshConnect();
+                }
+            }
+            throw new Exception("can't remote execute");
         }
 
         /// <summary>
@@ -273,7 +328,8 @@ namespace NettyRPC
         /// </summary>
         internal  void OnDisconnected()
         {
-            connected = false;
+            Console.WriteLine("now disconnected");
+            _connected = false;
             var taskSetActions = this.taskSetterTable.RemoveAll();
             foreach (var taskSetAction in taskSetActions)
             {
@@ -281,7 +337,11 @@ namespace NettyRPC
                 taskSetAction.SetException(exception);
             }
         }
-
+        public async Task<int> disconnect()
+        {
+         await   this.clientSession.DisconnectAsync();
+            return 0;
+        }
         /// <summary>
         /// 释放资源
         /// </summary>
@@ -334,7 +394,7 @@ namespace NettyRPC
                     }));
 
                 this.clientSession = AsyncHelpers.RunSync<IChannel>(()=> bootstrap.ConnectAsync(new IPEndPoint(host, port)));
-                connected = true;
+                _connected = true;
                 Console.WriteLine("now connect");
 
             }
