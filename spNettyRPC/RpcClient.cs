@@ -272,7 +272,7 @@ namespace NettyRPC
                 }
                 catch (Exception exception)
                 {
-                    Console.WriteLine("InvokeApi ex:", exception.ToString());
+                    Console.WriteLine("InvokeApi {0} ex: {1}",api, exception.Message.ToString());
                     i++;
                     this.clientSession.DisconnectAsync().GetAwaiter().GetResult();
                     this.clientSession.CloseAsync().GetAwaiter().GetResult();

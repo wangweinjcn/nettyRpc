@@ -7,7 +7,7 @@ namespace NettyRPC.Core
     /// <summary>
     /// 默认提供的二进制序列化工具
     /// </summary>
-    internal sealed class DefaultSerializer : ISerializer
+    public sealed class DefaultSerializer : ISerializer
     {
         /// <summary>
         /// json序列化

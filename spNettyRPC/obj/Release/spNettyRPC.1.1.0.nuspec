@@ -5,7 +5,8 @@
     <version>1.1.0</version>
     <authors>spNettyRPC</authors>
     <description>dotnet core rpc framwork base dotnetty</description>
-    <releaseNotes>1.0.1 增加获取所有的session函数和查找session函数
+    <releaseNotes>1.1.2 处理超时问题
+      1.0.1 增加获取所有的session函数和查找session函数
       1.0.2 增加OnActionExecuting和OnActionExecuted 触发器函数
       1.0.3 添加messagePack的打包模式，增加rpcServer和rpcCLient的构造函数
       1.0.4 修复bug，对IChannel加锁保护；
