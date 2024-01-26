@@ -53,8 +53,10 @@ namespace NettyRPC.Core
         }
         public object Deserialize(byte[] bytes, Type type)
         {
-            //   Console.WriteLine("mpSerializer Deserialize");
-            object obj;
+            try
+            {
+                //   Console.WriteLine("mpSerializer Deserialize");
+                object obj;
 #if NET451
         
         
@@ -67,17 +69,23 @@ namespace NettyRPC.Core
                 obj = MessagePackSerializer.Typeless.Deserialize(bytes);
             }
 #else
-            MessagePackSerializerOptions options;
-            if (useZip)
-            {
-                options = MessagePack.Resolvers.ContractlessStandardResolver.Options.WithCompression(MessagePackCompression.Lz4BlockArray);
-            }
-            else
-                options = MessagePack.Resolvers.ContractlessStandardResolver.Options;
-            ReadOnlySequence<byte> inputbytes=new ReadOnlySequence<byte>(bytes);
-              obj =   mDeserializeFunc.MakeGenericMethod(type).Invoke(mpType ,  new object[] { inputbytes, options, new CancellationToken() }) ;
+                MessagePackSerializerOptions options;
+                if (useZip)
+                {
+                    options = MessagePack.Resolvers.ContractlessStandardResolver.Options.WithCompression(MessagePackCompression.Lz4BlockArray);
+                }
+                else
+                    options = MessagePack.Resolvers.ContractlessStandardResolver.Options;
+                ReadOnlySequence<byte> inputbytes = new ReadOnlySequence<byte>(bytes);
+                obj = mDeserializeFunc.MakeGenericMethod(type).Invoke(mpType, new object[] { inputbytes, options, new CancellationToken() });
 #endif
-            return obj;
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
         }
 
         public byte[] Serialize(object model)

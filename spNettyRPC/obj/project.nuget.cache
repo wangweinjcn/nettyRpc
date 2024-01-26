@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uR0ETnX3UErJarJO/JLwQsKwj238nx7WKD0NLWUn3CIqlURht5wZg5W7fS+54sWX+sYkVJHH1+HEzwjCiEo1dg==",
+  "dgSpecHash": "zX2fzY/HNDxgk1qiOm8ehguu/axSQRWrYbPFIeyjQYECEC2LZiAfq/7JBAPpuOZvwQ1NLKs+ehPIYV6iaSrn/A==",
   "success": true,
   "projectFilePath": "D:\\projects\\dotnetCore\\open_microService\\rpc\\spNettyRPC\\spNettyRPC.csproj",
   "expectedPackageFiles": [
