@@ -3961,7 +3961,6 @@
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -4282,7 +4281,6 @@
       "path": "system.componentmodel/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
