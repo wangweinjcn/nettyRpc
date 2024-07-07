@@ -158,6 +158,7 @@ D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNetty
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.AssemblyInfoInputs.cache
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.AssemblyInfo.cs
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.csproj.CoreCompileInputs.cache
-D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.csproj.CopyComplete
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.dll
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.pdb
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.sourcelink.json
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net451\spNettyRPC.csproj.Up2Date

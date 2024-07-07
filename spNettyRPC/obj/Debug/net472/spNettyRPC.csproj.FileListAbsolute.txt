@@ -38,6 +38,7 @@ D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNetty
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNettyRPC.AssemblyInfoInputs.cache
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNettyRPC.AssemblyInfo.cs
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNettyRPC.csproj.CoreCompileInputs.cache
-D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNettyRPC.csproj.CopyComplete
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNettyRPC.dll
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNettyRPC.pdb
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNettyRPC.sourcelink.json
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net472\spNettyRPC.csproj.Up2Date

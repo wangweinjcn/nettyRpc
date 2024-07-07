@@ -10,3 +10,4 @@ D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNetty
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\refint\spNettyRPC.dll
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.pdb
 D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\ref\spNettyRPC.dll
+D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\obj\Debug\net6.0\spNettyRPC.sourcelink.json
