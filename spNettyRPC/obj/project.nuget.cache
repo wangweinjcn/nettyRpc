@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aEWedbYceQhbz7P2i8kGURT9E6ETmrKBbgwFafK/Yxg2M47hPzPxEuQw+3ndu/RZZOks9PcvHrye7BoecTIf6A==",
+  "dgSpecHash": "pPoPVFBQdcCv8/+xzQsmfbe7vCM1U4g8HHV8Oe6rWFuvYIFyVF+PXRqB/cltDQ/llrgObbrsZuHrL7uFi+ZGgg==",
   "success": true,
   "projectFilePath": "D:\\projects\\dotnetCore\\open_microService\\rpc\\spNettyRPC\\spNettyRPC.csproj",
   "expectedPackageFiles": [
@@ -125,8 +125,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\think\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.31\\microsoft.windowsdesktop.app.ref.6.0.31.nupkg.sha512",
     "C:\\Users\\think\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.31\\microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\think\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.31\\microsoft.windowsdesktop.app.ref.6.0.31.nupkg.sha512",
     "C:\\Users\\think\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.31\\microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512"
   ],
   "logs": [
