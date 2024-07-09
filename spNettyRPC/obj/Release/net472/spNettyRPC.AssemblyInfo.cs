@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("wangwei")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("dotnet core rpc framwork base dotnetty")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.3.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.0+2669e3569e69cc73c70ec8f68eda98a7c8f386da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.0+280d7f95bb86fd94b5aab913ea4c32013f3321d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("spNettyRPC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("spNettyRPC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.3.0")]
