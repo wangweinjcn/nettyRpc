@@ -15,7 +15,7 @@
       1.0.6 修改超时配置
       1.1.0  升级组件，支持.net6 /net472</releaseNotes>
     <copyright>wangwei</copyright>
-    <repository type="git" url="https://github.com/wangweinjcn/nettyRpc.git" commit="d4eff4432cc5f0a92749d627a206d10c313e6e13" />
+    <repository type="git" url="https://github.com/wangweinjcn/nettyRpc.git" commit="6e5797bfeecebce3d344958292049ac7317b7249" />
     <dependencies>
       <group targetFramework=".NETFramework4.5.1">
         <dependency id="DotNetty.Buffers" version="0.6.0" exclude="Build,Analyzers" />

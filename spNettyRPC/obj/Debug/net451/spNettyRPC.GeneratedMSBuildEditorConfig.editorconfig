@@ -3,3 +3,6 @@ build_property.RootNamespace = NettyRPC
 build_property.ProjectDir = D:\projects\dotnetCore\open_microService\rpc\spNettyRPC\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 
